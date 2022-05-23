@@ -8,7 +8,7 @@ const AddProject = ({ user, closeProjectModal }) => {
     const [description, setDescription] = useState('');
 
     const postProject = () => {
-        axios.post('http://127.0.0.1:8000/projects/', {
+        axios.post(`${process.env.REACT_APP_BASE_URL}projects/`, {
             name: name,
             description: description,
             author: user

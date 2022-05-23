@@ -18,7 +18,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-f0_q2uo6pr#6l%f-pg!!!
 #ALLOWED_HOSTS = []
 
 DEBUG = False
-ALLOWED_HOSTS = ['sandromesi-bug-tracker.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['sandromesi-bug-tracker.herokuapp.com', 'sandromesi-bug-tracker-api.herokuapp.com', '127.0.0.1']
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 """ if not DEBUG:

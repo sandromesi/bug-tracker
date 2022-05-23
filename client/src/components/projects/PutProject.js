@@ -7,7 +7,7 @@ const PutProject = ({ project, closeProjectModal }) => {
     const [description, setDescription] = useState(project.description);
 
     const editProject = () => {
-        axios.put('http://127.0.0.1:8000/projects/' + project.id + '/', {
+        axios.put(`${process.env.REACT_APP_BASE_URL}projects/` + project.id + '/', {
             name: name,
             description: description
         })

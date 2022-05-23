@@ -13,7 +13,7 @@ const ProjectPage = ({ user }) => {
     const [DeleteProjectModal, setDeleteProjectModal] = useState(false)
 
     useEffect(() => {
-        fetch('http://127.0.0.1:8000/projects')
+        fetch(`${process.env.REACT_APP_BASE_URL}projects`)
             .then(res => res.json())
             .then(res => {
                 setProjects(res)

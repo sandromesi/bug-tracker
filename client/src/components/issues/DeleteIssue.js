@@ -4,7 +4,7 @@ import axios from 'axios';
 const DeleteIssue = ({ issue, closeIssueModal }) => {
 
     const deleteIssue = () => {
-        axios.delete('http://127.0.0.1:8000/issues/' + issue.id + '/')
+        axios.delete(`${process.env.REACT_APP_BASE_URL}issues/` + issue.id + '/')
             .catch(err => console.error(err))
         window.location.replace('/');
     }

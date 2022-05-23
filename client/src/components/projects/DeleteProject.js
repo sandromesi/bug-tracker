@@ -4,7 +4,7 @@ import axios from 'axios';
 const DeleteProject = ({ project, closeProjectModal }) => {
 
     const deleteProject = () => {
-        axios.delete('http://127.0.0.1:8000/projects/' + project.id + '/')
+        axios.delete(`${process.env.REACT_APP_BASE_URL}projects/` + project.id + '/')
             .catch(err => console.error(err))
         window.location.replace('/projects');
     }

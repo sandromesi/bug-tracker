@@ -11,7 +11,7 @@ const AddIssue = ({ user, closeIssueModal }) => {
     const [dueDate, setDueDate] = useState('');
 
     useEffect(() => {
-        fetch('http://127.0.0.1:8000/projects')
+        fetch(`${process.env.REACT_APP_BASE_URL}projects`)
             .then(res => res.json())
             .then(res => {
                 setProjects(res)
@@ -19,7 +19,7 @@ const AddIssue = ({ user, closeIssueModal }) => {
     }, [])
 
     const postIssue = () => {
-        axios.post('http://127.0.0.1:8000/issues/', {
+        axios.post(`${process.env.REACT_APP_BASE_URL}issues/`, {
             title: title,
             description: description,
             status: status,

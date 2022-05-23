@@ -13,7 +13,7 @@ const IssuePage = ({ user }) => {
     const [DeleteIssueModal, setDeleteIssueModal] = useState(false)
 
     useEffect(() => {
-        fetch('http://127.0.0.1:8000/issues')
+        fetch(`${process.env.REACT_APP_BASE_URL}issues`)
             .then(res => res.json())
             .then(res => {
                 setIssues(res)

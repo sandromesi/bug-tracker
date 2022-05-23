@@ -9,7 +9,7 @@ const PutIssue = ({ issue, closeIssueModal }) => {
     const [dueDate, setDueDate] = useState(issue.due_date);
 
     const editIssue = () => {
-        axios.put('http://127.0.0.1:8000/issues/' + issue.id + '/', {
+        axios.put(`${process.env.REACT_APP_BASE_URL}issues/` + issue.id + '/', {
             title: title,
             description: description,
             status: status,

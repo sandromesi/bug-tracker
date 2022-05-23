@@ -10,7 +10,7 @@ const RegisterPage = () => {
 
     const register = async (e) => {
         e.preventDefault();
-        await fetch('http://127.0.0.1:8000/register', {
+        await fetch(`${process.env.REACT_APP_BASE_URL}register`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({

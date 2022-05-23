@@ -6,9 +6,7 @@ const Nav = ({ user, setUser }) => {
 
     const logout = async () => {
         try {
-
-            console.log('inside logout function')
-            await fetch('http://127.0.0.1:8000/logout', {
+            await fetch(`${process.env.REACT_APP_BASE_URL}logout`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 credentials: 'include',
@@ -22,7 +20,6 @@ const Nav = ({ user, setUser }) => {
     }
 
     let menu;
-
 
     if (!user) {
 
