@@ -7,13 +7,6 @@ const LoginPage = () => {
     const [password, setPassword] = useState('');
 
     const login = async (e) => {
-        try {
-
-
-
-        } catch {
-
-        }
         e.preventDefault();
         await fetch('http://127.0.0.1:8000/login', {
             method: 'POST',

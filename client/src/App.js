@@ -8,6 +8,7 @@ import IssuePage from './pages/IssuePage'
 import ErrorPage from './pages/ErrorPage'
 import RegisterPage from './pages/RegisterPage';
 import LoginPage from './pages/LoginPage';
+import ProtectedRoutes from './ProtectedRoutes'
 import './css/app.css'
 
 function App() {
@@ -35,8 +36,10 @@ function App() {
           <Route path="/" element={<HomePage user={user} />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/" element={<ProtectedRoutes user={user} />}>
           <Route path="/projects" element={<ProjectPage user={user} />} />
           <Route path="/issues" element={<IssuePage user={user} />} />
+          </Route>
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </Router>

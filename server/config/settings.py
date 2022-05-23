@@ -14,8 +14,13 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-f0_q2uo6pr#6l%f-pg!!!
 # SECURITY WARNING: don't run with debug turned on in production!
 """ DEBUG = str(os.environ.get('DEBUG')) == '1' # 1 == True
  """
-DEBUG = True
-ALLOWED_HOSTS = []
+#DEBUG = True
+#ALLOWED_HOSTS = []
+
+DEBUG = False
+ALLOWED_HOSTS = ['sandromesi-bug-tracker.herokuapp.com', '127.0.0.1']
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 """ if not DEBUG:
     ALLOWED_HOSTS +=[os.environ.get('ALLOWED_HOST')] """
 
@@ -36,6 +41,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -91,6 +97,10 @@ DATABASES = {
         'PORT': '5432',
     }
 }
+
+import dj_database_url
+db_from_env = dj_database_url.config(conn_max_age=600)
+DATABASES['default'].update(db_from_env)
 
 
 # Password validation
