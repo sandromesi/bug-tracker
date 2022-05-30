@@ -6,10 +6,12 @@ const PutProject = ({ project, closeProjectModal }) => {
     const [name, setName] = useState(project.name);
     const [description, setDescription] = useState(project.description);
 
-    const editProject = () => {
-        axios.put(`${process.env.REACT_APP_BASE_URL}projects/` + project.id + '/', {
+    const editProject = (e) => {
+        e.preventDefault();
+        axios.put(`${process.env.REACT_APP_BASE_URL}projects/${project.id}/`, {
             name: name,
-            description: description
+            description: description,
+            author: project.author
         })
             .catch(err => console.error(err))
         window.location.replace('/projects');

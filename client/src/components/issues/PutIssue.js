@@ -8,12 +8,14 @@ const PutIssue = ({ issue, closeIssueModal }) => {
     const [status, setStatus] = useState(issue.status);
     const [dueDate, setDueDate] = useState(issue.due_date);
 
-    const editIssue = () => {
-        axios.put(`${process.env.REACT_APP_BASE_URL}issues/` + issue.id + '/', {
+    const editIssue = (e) => {
+        e.preventDefault();
+        axios.put(`${process.env.REACT_APP_BASE_URL}issues/${issue.id}/`, {
             title: title,
             description: description,
             status: status,
-            due_date: dueDate
+            due_date: dueDate,
+            author: issue.author
         })
             .catch(err => console.error(err))
         window.location.replace('/');
@@ -39,14 +41,12 @@ const PutIssue = ({ issue, closeIssueModal }) => {
                         </div>
                         <div className="form-floating mb-3">
                             <input type="text" className="form-control rounded-3" value={description}
-                                required
                                 onChange={(e) => setDescription(e.target.value)} />
                             <label htmlFor="floatingInput" >Description: </label>
                         </div>
                         <div className="form-floating mb-3">
                             <select className="form-select" aria-label="Default select example"
                                 type="text"
-                                required
                                 value={status}
                                 onChange={(e) => setStatus(e.target.value)}>
                                 <option>{status}</option>

@@ -23,12 +23,9 @@ const LoginPage = () => {
             if (res.detail) {
                 alert(res.detail)
             }
-                
-            
         })
             .catch(err => console.error(err));
-        redirect()
-        
+        redirect()        
     }
 
     const redirect = () => {

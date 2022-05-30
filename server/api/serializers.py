@@ -21,9 +21,8 @@ class IssueSerializer(serializers.ModelSerializer):
                 'title', 
                 'description', 
                 'status',
-                'project_id',
+                'project',
                 'author',
-                'comments',
                 'creation_date',
                 'due_date')
     
@@ -33,4 +32,5 @@ class CommentSerializer(serializers.ModelSerializer):
         fields = ('id',
                 'text', 
                 'author',
+                'issue',
                 'creation_date')

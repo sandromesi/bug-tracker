@@ -1,6 +1,7 @@
 /client_backup
 /old_server
 /resources
+/backup
 
 ### Django ###
 *.log

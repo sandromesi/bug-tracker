@@ -7,8 +7,10 @@ const AddIssue = ({ user, closeIssueModal }) => {
     const [description, setDescription] = useState('');
     const [status, setStatus] = useState('');
     const [projects, setProjects] = useState([]);
-    const [projectName, setProjectName] = useState('');
     const [dueDate, setDueDate] = useState('');
+    //const [id, setId] = useState(0)
+    //const [slug, setSlug] = useState(0)
+    const [projectId, setProjectId] = useState('');
 
     useEffect(() => {
         fetch(`${process.env.REACT_APP_BASE_URL}projects`)
@@ -18,20 +20,25 @@ const AddIssue = ({ user, closeIssueModal }) => {
             })
     }, [])
 
+
+    /* const CreateissueNumber = () => {
+        fetch(`${process.env.REACT_APP_BASE_URL}issues/`)
+
+    } */
+
     const postIssue = () => {
+
         axios.post(`${process.env.REACT_APP_BASE_URL}issues/`, {
             title: title,
             description: description,
             status: status,
-            project_id: projectName,
+            project: projectId,
             author: user,
             due_date: dueDate
         })
             .catch(err => console.error(err))
         window.location.replace('/');
     }
-
-
 
     return (
         <div className='modalBackgroud' >
@@ -43,7 +50,7 @@ const AddIssue = ({ user, closeIssueModal }) => {
                     ></button>
                 </div>
                 <div className="modal-body p-5 pt-0">
-                    <form class="">
+                    <form className="">
                         <div className="form-floating mb-3">
                             <input type="text" className="form-control rounded-3"
                                 required
@@ -52,14 +59,12 @@ const AddIssue = ({ user, closeIssueModal }) => {
                         </div>
                         <div className="form-floating mb-3">
                             <input type="text" className="form-control rounded-3"
-                                required
                                 onChange={(e) => setDescription(e.target.value)} />
                             <label htmlFor="floatingInput" >Description: </label>
                         </div>
                         <div className="form-floating mb-3">
                             <select className="form-select" aria-label="Default select example"
                                 type="text"
-                                required
                                 value={status}
                                 onChange={(e) => setStatus(e.target.value)}>
                                 <option>{status}</option>
@@ -73,9 +78,8 @@ const AddIssue = ({ user, closeIssueModal }) => {
                         <div className="form-floating mb-3">
                             <select type="text" className="form-select" aria-label="Default select example"
                                 required
-                                value={projectName}
-                                onChange={(e) => setProjectName(e.target.value)}>
-                                <option value={projectName}>{projectName}</option>
+                                onChange={(e) => setProjectId(e.target.value)}>
+                                <option value={projects.id}>{projects.name}</option>
                                 {projects.map((project, index) => (
                                     <option key={index} value={project.id} >{project.name}</option>
                                 ))}
