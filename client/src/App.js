@@ -10,6 +10,9 @@ import RegisterPage from './pages/RegisterPage';
 import LoginPage from './pages/LoginPage';
 import ProtectedRoutes from './ProtectedRoutes'
 import './css/app.css'
+import ReactModal from 'react-modal';
+
+ReactModal.setAppElement('#root')
 
 function App() {
 
@@ -29,20 +32,22 @@ function App() {
   })
 
   return (
-    <div className='container-fluid wrapper'>
-      <Router>
-        <Nav user={user} setUser={setUser}/>
-        <Routes>
-          <Route path="/" element={<HomePage user={user} />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/" element={<ProtectedRoutes user={user} />}>
-          <Route path="/projects" element={<ProjectPage user={user} />} />
-          <Route path="/issues" element={<IssuePage user={user} />} />
-          </Route>
-          <Route path="*" element={<ErrorPage />} />
-        </Routes>
-      </Router>
+    <div className='d-flex flex-column d-inline-block min-vh-100'>
+      <div className='container flex-fill'>
+        <Router>
+          <Nav user={user} setUser={setUser} />
+          <Routes>
+            <Route path="/" element={<HomePage user={user} />} />
+            <Route path="/register" element={<RegisterPage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/" element={<ProtectedRoutes user={user} />}>
+              <Route path="/projects" element={<ProjectPage user={user} />} />
+              <Route path="/issues" element={<IssuePage user={user} />} />
+            </Route>
+            <Route path="*" element={<ErrorPage />} />
+          </Routes>
+        </Router>
+      </div>
       <Footer />
     </div>
   );

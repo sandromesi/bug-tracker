@@ -13,8 +13,15 @@ class ProjectsView(viewsets.ModelViewSet):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
 
+    @action(methods=['get'], detail=False)
+    def issues(self, request, id):
+
+        issues = Issue.objects.filter(project=id)
+        serializer_class = IssueSerializer(issues, many=True)
+        return Response(serializer_class.data)
+
 class IssuesView(viewsets.ModelViewSet):
-    queryset = Issue.objects.all()
+    queryset = Issue.objects.all().order_by('due_date')
     serializer_class = IssueSerializer
 
     @action(methods=['get'], detail=False)
@@ -25,7 +32,6 @@ class IssuesView(viewsets.ModelViewSet):
         return Response(serializer_class.data)
 
 class CommentsView(viewsets.ModelViewSet):
-    #queryset = Comment.objects.filter(issue=15)
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
 

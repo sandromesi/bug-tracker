@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import Comments from './Comments';
 
-const AddComment = ({ user, issue, closeCommentModal }) => {
+const PutComment = ({ comment, closeCommentModal }) => {
 
-    const [text, setText] = useState('');
+    const [text, setText] = useState(comment.text);
 
-    const postComment = () => {
-        axios.post(`${process.env.REACT_APP_BASE_URL}comments/`, {
+    const editComment = (e) => {
+        e.preventDefault();
+        axios.put(`${process.env.REACT_APP_BASE_URL}comments/${comment.id}/`, {
+            
             text: text,
-            author: user,
-            issue: issue.id
+            author: comment.author,
         })
             .catch(err => console.error(err))
         window.location.replace('/issues');
@@ -25,21 +25,17 @@ const AddComment = ({ user, issue, closeCommentModal }) => {
                         onClick={() => closeCommentModal(false)}
                     ></button>
                 </div>
-
-                <div className="overflow-auto">
-                    <Comments issue={issue} />
-                </div>
-
                 <div className="modal-body p-5 pt-0">
                     <form className="">
                         <div className="form-floating mb-3">
                             <input type="text" className="form-control rounded-3"
+                                value={text}
                                 required
                                 onChange={(e) => setText(e.target.value)} />
                             <label htmlFor="floatingInput" >Comment: </label>
                         </div>
                         <button className="w-100 mb-2 btn btn-lg rounded-3 btn-primary" type="submit"
-                            onClick={postComment} >Comment</button>
+                            onClick={editComment} >Edit Comment</button>
                     </form>
                 </div>
             </div>
@@ -47,4 +43,4 @@ const AddComment = ({ user, issue, closeCommentModal }) => {
     );
 };
 
-export default AddComment;
+export default PutComment;

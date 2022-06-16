@@ -6,6 +6,7 @@ from rest_framework import routers
 
 router = routers.DefaultRouter()
 router.register('projects', views.ProjectsView)
+router.register('projects/(?P<id>\d+)', views.ProjectsView, basename='issues')
 router.register('issues', views.IssuesView)
 router.register('issues/(?P<id>\d+)', views.IssuesView, basename='comments')
 router.register('comments', views.CommentsView)
